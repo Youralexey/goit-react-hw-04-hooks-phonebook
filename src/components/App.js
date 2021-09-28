@@ -26,7 +26,9 @@ export default function App() {
 
   const formSubmitHandle = ({ name, number }) => {
     const contact = { name, number, id: uuidv4() };
-    contacts.find((savedContact) => savedContact.name === name)
+    contacts.find(
+      (savedContact) => savedContact.name.toLowerCase() === name.toLowerCase()
+    )
       ? alert(`${name} is already in contacts`)
       : setContacts((prevContacts) => [...prevContacts, contact]);
   };
@@ -36,7 +38,7 @@ export default function App() {
   };
 
   const changeFilter = (e) => {
-    setFilter(e.target.value);
+    setFilter(e.currentTarget.value);
   };
 
   const normaliseFilter = filter.toLowerCase();
